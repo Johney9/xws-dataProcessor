@@ -1,7 +1,7 @@
 # xws-dataProcessor
 data processing module
 <br>
-using <b>Java 1.7</b> and the <b>xws-dbFacade</b> module
+using <b>Java 1.7</b> and the <b>xws-dbFacade</b> & <b>xws-model</b> modules
 <br>
 <br>
 Worked on by: johney9, pyromaniackeca
