@@ -96,7 +96,10 @@ TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web ser
     procesiranje MT103
     <br>
     //*kontekst: banka prima ovo i MT900 od centralne banke i koristi ih za skidanje para sa raucna kupca
-    <ul><li>isto kao za MT103, iznad</li></ul>
+    <ul>
+      <li>validacija sadrzaja</li>
+      <li>vrati mi ok/nije ok</li>
+    </ul>
   </li>
   <br>
   <li>
