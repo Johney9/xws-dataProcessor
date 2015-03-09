@@ -13,7 +13,7 @@ Used by: xws-dbFacade, web services (firma, banka, centralna banka)
 Napomena: molim te ako sam nesto propustio a ti skontas, dodaj. ako mislis da nesto moze bolje da se uradi, slobodno, ali me samo obavesti
 <br>
 <br>
-Napomena 2: napravljen ti je konverter u oba smera (XML <=> Object), koristi ga, trebace ti. Objekti koji ce ti stizati bice instance klasa iz xws-model.
+Napomena 2: napravljen ti je konverter u oba smera (XML <=> Object), koristi ga, trebace ti. Objekti koji ce ti stizati od mene bice instance klasa iz xws-model. Iz baze ce ti stizati xml fajlovi.
 <br>
 <br>
 Napomena 3: kada hoces nesto da sacuvas u bazu (a svaka poruka koju primi web servis, odnosno koju prosledim tebi na obradu se sacuvava u bazi) ili procitas iz baze, imas facade klase u xws-dbFacade. one rade i marshalling/unmarshalling za tebe, samo im prosledis ono sto ti treba.
