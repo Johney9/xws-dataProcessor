@@ -1,7 +1,7 @@
 # xws-dataProcessor
 data processing module
 <br>
-using <b>Java 1.7</b> and the <b>xws-dbFacade</b> & <b>xws-model</b> modules
+using <b>Java 1.7</b> and the <b>xws-dbConnector</b>, <b>xws-dbFacade</b> & <b>xws-model</b> modules
 <br>
 <br>
 Worked on by: johney9, pyromaniackeca
@@ -14,6 +14,9 @@ Napomena: molim te ako sam nesto propustio a ti skontas, dodaj. ako mislis da ne
 <br>
 <br>
 Napomena 2: napravljen ti je konverter u oba smera (XML <=> Object), koristi ga, trebace ti.
+<br>
+<br>
+Napomena 3: kada hoces nesto da sacuvas u bazu ili procitas iz baze, imas facade klase u xws-dbFacade. one rade marshalling/unmarshalling za tebe.
 <br>
 <br>
 TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web servisa (u stilu koristeci neku klasu iz tvog modula, posaljem objekat koji mi je stigao i ti mi vratis rezultat u zavisnosti od objekta koji sam ti ja poslao)
