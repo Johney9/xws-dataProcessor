@@ -7,19 +7,19 @@ using <b>Java 1.7</b> and the <b>xws-dbConnector</b>, <b>xws-dbFacade</b> & <b>x
 Worked on by: johney9, pyromaniackeca
 <br>
 <br>
-Used by: web services (firma, banka, centralna banka)
+Used by: xws-dbFacade, web services (firma, banka, centralna banka)
 <br>
 <br>
 Napomena: molim te ako sam nesto propustio a ti skontas, dodaj. ako mislis da nesto moze bolje da se uradi, slobodno, ali me samo obavesti
 <br>
 <br>
-Napomena 2: napravljen ti je konverter u oba smera (XML <=> Object), koristi ga, trebace ti.
+Napomena 2: napravljen ti je konverter u oba smera (XML <=> Object), koristi ga, trebace ti. Objekti koji ce ti stizati bice instance klasa iz xws-model.
 <br>
 <br>
-Napomena 3: kada hoces nesto da sacuvas u bazu ili procitas iz baze, imas facade klase u xws-dbFacade. one rade marshalling/unmarshalling za tebe.
+Napomena 3: kada hoces nesto da sacuvas u bazu (a svaka poruka koju primi web servis, odnosno koju prosledim tebi na obradu se sacuvava u bazi) ili procitas iz baze, imas facade klase u xws-dbFacade. one rade i marshalling/unmarshalling za tebe, samo im prosledis ono sto ti treba.
 <br>
 <br>
-TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web servisa (u stilu koristeci neku klasu iz tvog modula, posaljem objekat koji mi je stigao i ti mi vratis rezultat u zavisnosti od objekta koji sam ti ja poslao)
+TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web servisa (u stilu: koristeci neku klasu iz tvog modula, prosledim tvom modulu objekat koji mi je stigao, on ga obradi i vrati mi rezultat u zavisnosti od konteksta)
 <ul>
 <li><b>1.</b> procitaj project-xws-2014.pdf, pogotovo sekciju "3. test scenariji"</li>
 <li><b>2.</b> procitaj ove stavke</li>
@@ -30,12 +30,12 @@ TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web ser
   <li>
     procesiranje fakture:
     <br>
-    //*kontekst: faktura je nacin komunikacije izmedju 2 firme, ona moze biti: daj mi predmete ili daj mi pare. 
+    //*kontekst: faktura je nacin komunikacije izmedju 2 firme, ona moze biti: daj mi predmet(e) ili daj mi pare. 
     <ul>
       <li>odredjivanje da li je faktura racun ili "zahtev" za kupovinu</li>
       <li>ako je zahtev za kupovinu, obraditi ga i vratiti kao povratnu vrednost fakturu koja je racun</li>
       <li>validacija sadrzaja fakture (npr. da ukupna cena odgovara sumi pojedinacnih cena itd., zavisi od konteksta) ** ova validacija je u razlicitom obliku potrebna za sve poruke koje se razmenjuju(kod banke, centralne banke)</li>      
-      <li>validacija da li je poslato dobroj firmi(poredjenje sa stringom koji se dodatno salje pri pozivu metode i odgovara PIB-u u Fakturi; ili necim drugim ako mislis da je bolje) ** i ova validacija je potrebna u razlicitom obliku kod ostalih poruka</li>    
+      <li>validacija da li je poslato dobroj firmi(poredjenje sa stringom koji bih ti dodatno slao pri pozivu metode, kao npr. PIB u Fakturi; ili poredjenje sa necim drugim ako mislis da je bolje) ** i ova validacija je potrebna u razlicitom obliku kod ostalih poruka</li>    
     </ul>
   </li>
 </ul>
@@ -58,7 +58,7 @@ TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web ser
     //*kontekst: izvod koji banka posalje firmi, nista posebno osim za to da ide u presecima (delovima)
     <ul>
       <li>validacija sadrzaja</li>
-      <li>ne mogu trenutno da smislim, skontaj</li>
+      <li>ne mogu trenutno da smislim, skontaj sam</li>
     </ul>
   </li>
   <br>
@@ -75,7 +75,7 @@ TODO: napravi poslovnu logiku i interface sa kojim cu ja komunicirati iz web ser
         <ul>
           <li>rezervisi sredstva na racunu kupca</li>
           <li>ako je iznos manji od 250.000 i nalog nije oznacen kao hitan, vrati (generisi) popunjen MT102</li>
-          <li>ako je iznos veci od 250.000 ili je nalog oznacen kao hitan, vrati popunjen MT103</li>
+          <li>ako je iznos veci od 250.000 ili je nalog oznacen kao hitan, vrati (generisi) popunjen MT103</li>
         </ul>
       </li>
     </ul>
