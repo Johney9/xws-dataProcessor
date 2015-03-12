@@ -11,7 +11,7 @@ import javax.xml.bind.PropertyException;
  * 
  * @author Nikola
  * Convert Object->XML and serialize the result to {@code OutputStream out}
- * @param <T> class that is being marshalled
+ * @param <T> object that is being marshalled
  */
 public class GenericXWSMarshaller<T> {
 	
@@ -26,6 +26,7 @@ public class GenericXWSMarshaller<T> {
 	 */
 	public GenericXWSMarshaller(T marshalee, OutputStream out) {
 		try {
+			//the context acutally requires the location of the ObjectFactory class, which this provides
 			context=JAXBContext.newInstance(marshalee.getClass().getPackage().getName());
 			this.marshallee=marshalee;
 			this.out=out;
@@ -42,18 +43,17 @@ public class GenericXWSMarshaller<T> {
 		marshall(marshallee);
 	}
 	
-	//TODO: change marshaller output stream to target the database, instead of a file
 	/**
-	 * Converts Object->XML and stores it in the database
+	 * Converts Object->XML and serializes it to {@code out}
 	 * @param marshallee object to be marshalled
 	 */
 	private void marshall(T marshallee) {
 		Marshaller marshaller = null;
 		try {
 			marshaller=context.createMarshaller();
-			//na ovaj naci se setuje koji prefiks se koristi za koji namespace
+			//set which prefix is using which namespace
 			marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NSPrefixMapper());
-			//da se radi identacija
+			//do indentation
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(marshallee, out);
 		} catch (PropertyException e) {
