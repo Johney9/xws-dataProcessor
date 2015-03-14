@@ -52,8 +52,10 @@ public class GenericXWSUnmarshaller<T> {
 	/**
 	 * Converts XML->Object
 	 * @return converted object
+	 * @throws SAXException 
+	 * @throws JAXBException 
 	 */
-	public T unmarshall() {
+	public T unmarshall() throws JAXBException, SAXException {
 		return unmarshall(in);
 	}
 	
@@ -61,41 +63,36 @@ public class GenericXWSUnmarshaller<T> {
 	 * Converts XML->Object deserializing it from a source
 	 * @param in InputStream toward the source
 	 * @return
+	 * @throws JAXBException 
+	 * @throws SAXException 
 	 */
 	@SuppressWarnings("unchecked")
-	private T unmarshall(InputStream in) {
+	private T unmarshall(InputStream in) throws JAXBException, SAXException {
 		T retVal=null;
-		try {
-			//Definisemo kontekst, tj. paket(e) u kome se nalaze bean-ovi
-			//Klasa za konverziju XML-a u objektni model
-			Unmarshaller unmarshaller = context.createUnmarshaller();
-			
-			//postavljanje validacije
-			//W3C sema
-			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			
-			Schema schema;
-			
-			Path workspacePath = Paths.get(System.getProperty("user.dir"), "");
-			workspacePath = workspacePath.getParent();
-			Path schemaPath = workspacePath.resolve(MODEL_PATH+fileName+".xsd");
+		//Definisemo kontekst, tj. paket(e) u kome se nalaze bean-ovi
+		//Klasa za konverziju XML-a u objektni model
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		
+		//postavljanje validacije
+		//W3C sema
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		
+		Schema schema;
+		
+		Path workspacePath = Paths.get(System.getProperty("user.dir"), "");
+		workspacePath = workspacePath.getParent();
+		Path schemaPath = workspacePath.resolve(MODEL_PATH+fileName+".xsd");
 
-			//lokacija seme
-			schema = schemaFactory.newSchema(schemaPath.toFile());
-			//schema = schemaFactory.newSchema(new File(MODEL_PATH+schemaName+".xsd"));
-            //setuje se sema
-			unmarshaller.setSchema(schema);
-						//EventHandler, koji obradjuje greske, ako se dese prilikom validacije
-            unmarshaller.setEventHandler(new MyValidationEventHandler());
-			
-            //ucitava se objektni model, a da se pri tome radi i validacija
-            retVal = (T) unmarshaller.unmarshal(in);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-			
-		} catch (SAXException e) {
-			e.printStackTrace();
-		}
+		//lokacija seme
+		schema = schemaFactory.newSchema(schemaPath.toFile());
+		//schema = schemaFactory.newSchema(new File(MODEL_PATH+schemaName+".xsd"));
+        //setuje se sema
+		unmarshaller.setSchema(schema);
+					//EventHandler, koji obradjuje greske, ako se dese prilikom validacije
+        unmarshaller.setEventHandler(new MyValidationEventHandler());
+		
+        //ucitava se objektni model, a da se pri tome radi i validacija
+        retVal = (T) unmarshaller.unmarshal(in);
 		return retVal;
 	}
 
@@ -107,11 +104,11 @@ public class GenericXWSUnmarshaller<T> {
 		this.context = context;
 	}
 
-	public String getSchemaName() {
+	public String getFileName() {
 		return namespace;
 	}
 
-	public void setSchemaName(String schemaName) {
+	public void setFileName(String schemaName) {
 		if(!schemaName.isEmpty()) {
 			if(schemaName.contains(".")) {
 				schemaName=schemaName.substring(0,schemaName.lastIndexOf(".")).trim().toLowerCase();
