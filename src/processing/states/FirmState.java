@@ -9,7 +9,6 @@ import org.xml.sax.SAXException;
 import rs.ac.uns.ftn.xws.cbs.faktura.Faktura;
 import validation.DataValidator;
 import validation.FakturaValidator;
-import facades.DBWriterFacade;
 
 public class FirmState extends ProcessingState {
 	
@@ -19,10 +18,7 @@ public class FirmState extends ProcessingState {
 		
 		Faktura retVal = (Faktura) validator.validate(faktura);
 		
-		//storing to database
-		dbWriter = new DBWriterFacade<Faktura>(retVal);
-		
-		dbWriter.save();
+		storeInDatabase(faktura);
 		
 		return retVal;
 	}

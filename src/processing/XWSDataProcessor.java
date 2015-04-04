@@ -16,11 +16,11 @@ import rs.ac.uns.ftn.xws.cbs.mt910.Mt910;
 import rs.ac.uns.ftn.xws.cbs.nalog_za_placanje.NalogZaPlacanje;
 import rs.ac.uns.ftn.xws.cbs.zahtev_za_izvod.ZahtevZaIzvod;
 
-public class DataProcessor implements DataProcessing {
+public class XWSDataProcessor implements DataProcessing {
 
 	protected ProcessingState state;
 	
-	public DataProcessor(ProcessingState state) {
+	public XWSDataProcessor(ProcessingState state) {
 		this.state=state;
 	}
 	
@@ -35,27 +35,27 @@ public class DataProcessor implements DataProcessing {
 	}
 
 	@Override
-	public Object process(Mt900 mt900) {
+	public Object process(Mt900 mt900) throws JAXBException, IOException, SAXException, Exception{
 		return state.process(mt900);
 	}
 
 	@Override
-	public Object process(Mt910 mt910) {
+	public Object process(Mt910 mt910) throws JAXBException, IOException, SAXException, Exception {
 		return state.process(mt910);
 	}
 
 	@Override
-	public Object process(Izvod izvod) {
+	public Object process(Izvod izvod) throws JAXBException, IOException, SAXException, Exception {
 		return state.process(izvod);
 	}
 
 	@Override
-	public Object process(NalogZaPlacanje nalog) {
+	public Object process(NalogZaPlacanje nalog) throws JAXBException, IOException, SAXException, Exception {
 		return state.process(nalog);
 	}
 
 	@Override
-	public Object process(ZahtevZaIzvod zahtev) {
+	public Object process(ZahtevZaIzvod zahtev) throws JAXBException, IOException, SAXException, Exception {
 		return state.process(zahtev);
 	}
 
