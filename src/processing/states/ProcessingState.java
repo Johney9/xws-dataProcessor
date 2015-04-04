@@ -70,5 +70,13 @@ public abstract class ProcessingState implements DataProcessing {
 		dbWriter.save();
 		dbWriter=null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T> T readFromDatabase(T type, String schemaName) throws JAXBException, IOException, Exception {
+		dbReader = new DBReaderFacade<T>(type, schemaName);
+		T retVal =  (T) dbReader.read();
+		dbReader=null;
+		return retVal;
+	}
 
 }
