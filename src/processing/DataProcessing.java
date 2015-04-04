@@ -23,5 +23,5 @@ public interface DataProcessing {
 	public Object process(Izvod izvod);
 	public Object process(NalogZaPlacanje nalog);
 	public Object process(ZahtevZaIzvod zahtev);
-	public Object process(Faktura faktura);
+	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception;
 }

@@ -61,7 +61,7 @@ public abstract class ProcessingState implements DataProcessing {
 	}
 	
 	@Override 
-	public Object process(Faktura faktura) {
+	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 	

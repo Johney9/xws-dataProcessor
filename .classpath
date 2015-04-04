@@ -7,5 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/xws-cbs-centralnaBanka"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/xws-cbs-firma"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/xws-dbFacade"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/xws-wsBuilder"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

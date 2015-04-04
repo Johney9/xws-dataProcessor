@@ -60,8 +60,17 @@ public class DataProcessor implements DataProcessing {
 	}
 
 	@Override
-	public Object process(Faktura faktura) {
+	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception {
 		return state.process(faktura);
+	}
+
+	
+	public ProcessingState getState() {
+		return state;
+	}
+
+	public void setState(ProcessingState state) {
+		this.state = state;
 	}
 
 }
