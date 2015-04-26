@@ -30,9 +30,11 @@ public class FakturaValidator implements DataValidator {
 		extractPrices(faktura);
 		
 		if(isPurchaseOrder(faktura)) {
+			
 			retVal=FakturaBuilder.buildPrice(faktura);
 		}
 		else {
+			
 			checkPriceValidity();
 			retVal=faktura;
 		}
@@ -76,7 +78,7 @@ public class FakturaValidator implements DataValidator {
 		int res = total.compareTo(parts);
 		
 		if(res!=0) {
-			throw new RuntimeException("Total price doesn't match individual prices.");
+			throw new RuntimeException("Total price doesn't match individual prices in validation. FakturaValidator");
 		}
 	}
 	

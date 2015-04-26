@@ -1,6 +1,7 @@
 package processing;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.xml.bind.JAXBException;
 
@@ -24,4 +25,5 @@ public interface DataProcessing {
 	public Object process(NalogZaPlacanje nalog) throws JAXBException, IOException, SAXException, Exception;
 	public Object process(ZahtevZaIzvod zahtev) throws JAXBException, IOException, SAXException, Exception;
 	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception;
+	public void initialSetup(Properties properties) throws JAXBException, IOException, SAXException, Exception;
 }

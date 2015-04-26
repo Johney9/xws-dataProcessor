@@ -1,11 +1,34 @@
 package util;
 
 public class BankAccountValidator {
+	
 	public static boolean validate(String bankAccount) {
 		
 		boolean retVal=false;
 		
 		retVal=validateBankAccount(bankAccount);
+		
+		return retVal;
+	}
+	
+	public static boolean sameBank(String bankAccountOne, String bankAccountTwo) {
+		
+		boolean retVal=false;
+		boolean accountOneValid = validateBankAccount(bankAccountOne);
+		boolean accountTwoValid = validateBankAccount(bankAccountTwo);
+		
+		if(accountOneValid && accountTwoValid) {
+			
+			String bankOneString = bankAccountOne.substring(0, 2);
+			String bankTwoString = bankAccountTwo.substring(0, 2);
+			
+			int bankOne=Integer.parseInt(bankOneString);
+			int bankTwo=Integer.parseInt(bankTwoString);
+			
+			if(bankOne==bankTwo) {
+				retVal=true;
+			}
+		}
 		
 		return retVal;
 	}

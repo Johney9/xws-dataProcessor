@@ -1,6 +1,7 @@
 package processing.states;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.xml.bind.JAXBException;
 
@@ -15,68 +16,87 @@ import rs.ac.uns.ftn.xws.cbs.mt900.Mt900;
 import rs.ac.uns.ftn.xws.cbs.mt910.Mt910;
 import rs.ac.uns.ftn.xws.cbs.nalog_za_placanje.NalogZaPlacanje;
 import rs.ac.uns.ftn.xws.cbs.zahtev_za_izvod.ZahtevZaIzvod;
-import utility.NullClass;
-import facades.DBReaderFacade;
-import facades.DBWriterFacade;
+import facades.DatabaseFacade;
 
-@SuppressWarnings("rawtypes")
 public abstract class ProcessingState implements DataProcessing {
-
-	DBReaderFacade dbReader;
-	DBWriterFacade dbWriter;
+	
+	DatabaseFacade dbFacade = new DatabaseFacade();
 	
 	@Override
-	public Object process(Mt102 mt102) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
+	public Object process(Mt102 mt102) throws JAXBException, IOException,
+			SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Override
-	public Object process(Mt103 mt103) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
-	}
+
 
 	@Override
-	public Object process(Mt900 mt900) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
+	public Object process(Mt103 mt103) throws JAXBException, IOException,
+			SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Override
-	public Object process(Mt910 mt910) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
-	}
+
 
 	@Override
-	public Object process(Izvod izvod) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
+	public Object process(Mt900 mt900) throws JAXBException, IOException,
+			SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Override
-	public Object process(NalogZaPlacanje nalog) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
-	}
+
 
 	@Override
-	public Object process(ZahtevZaIzvod zahtev) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
+	public Object process(Mt910 mt910) throws JAXBException, IOException,
+			SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	@Override 
-	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception {
-		return new NullClass();
+
+
+
+	@Override
+	public Object process(Izvod izvod) throws JAXBException, IOException,
+			SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	protected <T> void storeInDatabase(T target) throws JAXBException, IOException, SAXException, Exception {
-		dbWriter = new DBWriterFacade<T>(target);
-		dbWriter.save();
-		dbWriter=null;
+
+
+
+	@Override
+	public Object process(NalogZaPlacanje nalog) throws JAXBException,
+			IOException, SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	@SuppressWarnings("unchecked")
-	protected <T> T readFromDatabase(T type, String schemaName) throws JAXBException, IOException, Exception {
-		dbReader = new DBReaderFacade<T>(type, schemaName);
-		T retVal =  (T) dbReader.read();
-		dbReader=null;
-		return retVal;
+
+
+
+	@Override
+	public Object process(ZahtevZaIzvod zahtev) throws JAXBException,
+			IOException, SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Object process(Faktura faktura) throws JAXBException, IOException,
+			SAXException, Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void initialSetup(Properties properties) throws JAXBException, IOException, SAXException, Exception {
+		//do nothing
 	}
 
 }

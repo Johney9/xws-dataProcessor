@@ -1,6 +1,7 @@
 package processing;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.xml.bind.JAXBException;
 
@@ -62,9 +63,13 @@ public class XWSDataProcessor implements DataProcessing {
 	@Override
 	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception {
 		return state.process(faktura);
+	}	
+	
+	@Override
+	public void initialSetup(Properties properties) throws JAXBException, IOException, SAXException, Exception {
+		state.initialSetup(properties);
 	}
 
-	
 	public ProcessingState getState() {
 		return state;
 	}
