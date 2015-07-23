@@ -10,6 +10,7 @@ Worked on by: johney9, pyromaniackeca
 Used by: xws-dbFacade, web services (firma, banka, centralna banka)
 <br>
 <br>
+Update: left todo: implement mt102 grouping algorithm in central bank state, finish some minor things in bank state, generate test data, make a data generating tool, do integration tests
 Napomena: molim te ako sam nesto propustio a ti skontas, dodaj. ako mislis da nesto moze bolje da se uradi, slobodno, ali me samo obavesti
 <br>
 <br>
