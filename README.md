@@ -1,7 +1,7 @@
 # xws-dataProcessor
 data processing module
 <br>
-using <b>Java 1.7</b> and the <b>xws-dbConnector</b>, <b>xws-dbFacade</b> & <b>xws-model</b> modules
+using <b>Java 1.6</b> and the <b>xws-dbConnector</b>, <b>xws-dbFacade</b> & <b>xws-model</b> modules
 <br>
 <br>
 Worked on by: johney9, pyromaniackeca
@@ -10,7 +10,9 @@ Worked on by: johney9, pyromaniackeca
 Used by: xws-dbFacade, web services (firma, banka, centralna banka)
 <br>
 <br>
-Update: left todo: implement mt102 grouping algorithm in central bank state, finish some minor things in bank state, generate test data, make a data generating tool, do integration tests
+<b>Update:</b> left todo: implement mt102 grouping algorithm in central bank state, finish some minor things in bank state, generate test data, make a data generating tool, do integration tests
+<br>
+<br>
 Napomena: molim te ako sam nesto propustio a ti skontas, dodaj. ako mislis da nesto moze bolje da se uradi, slobodno, ali me samo obavesti
 <br>
 <br>
