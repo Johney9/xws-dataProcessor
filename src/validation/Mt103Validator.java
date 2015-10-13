@@ -1,7 +1,6 @@
 package validation;
 
 import rs.ac.uns.ftn.xws.cbs.mt103.Mt103;
-import util.SwiftValidator;
 
 public class Mt103Validator implements DataValidator {
 

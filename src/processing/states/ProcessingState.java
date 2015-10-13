@@ -21,6 +21,7 @@ import facades.DatabaseFacade;
 public abstract class ProcessingState implements DataProcessing {
 	
 	DatabaseFacade dbFacade = new DatabaseFacade();
+	protected Properties configProperties;
 	
 	@Override
 	public Object process(Mt102 mt102) throws JAXBException, IOException,
