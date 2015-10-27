@@ -2,11 +2,12 @@ package validation;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Properties;
 
-import builders.firm.FakturaBuilder;
 import rs.ac.uns.ftn.xws.cbs.faktura.Faktura;
 import rs.ac.uns.ftn.xws.cbs.faktura.FakturaStavka;
 import rs.ac.uns.ftn.xws.cbs.faktura.FakturaZaglavlje;
+import builders.firm.FakturaBuilder;
 
 /**
  * Validator for Faktura
@@ -17,7 +18,17 @@ public class FakturaValidator implements DataValidator {
 
 	private BigDecimal total;
 	private BigDecimal parts;
+	private static final BigDecimal BIG_DECIMAL_ZERO=BigDecimal.valueOf(0);
+	private Properties properties;
 
+	public FakturaValidator() {
+		super();
+	}
+	
+	public FakturaValidator(Properties configProperties) {
+		this.properties=configProperties;
+	}
+	
 	@Override
 	public Faktura validate(Object obj) {
 
@@ -27,11 +38,14 @@ public class FakturaValidator implements DataValidator {
 		Faktura faktura = (Faktura) obj;
 		Faktura retVal = new Faktura();
 		
+		resetPrices();
+		
 		extractPrices(faktura);
 		
 		if(isPurchaseOrder(faktura)) {
 			
 			retVal=FakturaBuilder.buildPrice(faktura);
+			retVal.getZaglavlje().setPibDobavljaca(properties.getProperty("pib"));
 		}
 		else {
 			
@@ -49,22 +63,23 @@ public class FakturaValidator implements DataValidator {
 		FakturaZaglavlje fz = faktura.getZaglavlje();
 		List<FakturaStavka> stavke = faktura.getStavke();
 		
-		parts = new BigDecimal(0);
-		
 		for(FakturaStavka fs : stavke) {
+			if(fs.getVrednost()==null) {
+				return;
+			}
 			parts=parts.add(fs.getVrednost());
 		}
 		
 		total = fz.getUkupnoRobaIUsluge();
 	}
 	
-	private boolean isPurchaseOrder(Faktura faktura) {
+	protected boolean isPurchaseOrder(Faktura faktura) {
 		
 		boolean retVal = false;
 		
-		if(total.doubleValue()==0) {
+		if(total.compareTo(BIG_DECIMAL_ZERO)<=0) {
 			
-			if(parts.doubleValue()==0) {
+			if(parts.compareTo(BIG_DECIMAL_ZERO)<=0) {
 				
 				retVal=true;
 			}

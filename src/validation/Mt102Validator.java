@@ -2,15 +2,15 @@ package validation;
 
 import java.math.BigDecimal;
 
+import javax.security.auth.login.AccountException;
+
 import rs.ac.uns.ftn.xws.cbs.mt102.Mt102PojedinacniNalog;
 import rs.ac.uns.ftn.xws.cbs.mt102.Mt102;
-import util.BankAccountValidator;
-import util.SwiftValidator;
 
 public class Mt102Validator implements DataValidator {
 
 	@Override
-	public Mt102 validate(Object obj) {
+	public Mt102 validate(Object obj) throws AccountException {
 		
 		if(obj==null || !(obj instanceof Mt102))
 			return null;
@@ -19,7 +19,7 @@ public class Mt102Validator implements DataValidator {
 		
 		validateSwift(mt102);
 		validateUkupanIznos(mt102);
-		validateRacuniPoveriocaUIstojBanci(mt102);
+		validateRacuniUIstojBanci(mt102);
 		
 		return mt102;
 	}
@@ -58,7 +58,7 @@ public class Mt102Validator implements DataValidator {
 		}
 	}
 	
-	protected void validateRacuniPoveriocaUIstojBanci(Mt102 mt102) {
+	protected void validateRacuniUIstojBanci(Mt102 mt102) throws AccountException {
 		
 		String racunPoverioca = mt102.getObracunskiRacunBankePoverioca();
 		
