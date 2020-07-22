@@ -18,10 +18,10 @@ import rs.ac.uns.ftn.xws.cbs.zahtev_za_izvod.ZahtevZaIzvod;
 public interface DataProcessing {
 	public Object process(Mt102 mt102) throws JAXBException, IOException, SAXException, Exception;
 	public Object process(Mt103 mt103) throws JAXBException, IOException, SAXException, Exception;
-	public Object process(Mt900 mt900);
-	public Object process(Mt910 mt910);
-	public Object process(Izvod izvod);
-	public Object process(NalogZaPlacanje nalog);
-	public Object process(ZahtevZaIzvod zahtev);
-	public Object process(Faktura faktura);
+	public Object process(Mt900 mt900) throws JAXBException, IOException, SAXException, Exception;
+	public Object process(Mt910 mt910) throws JAXBException, IOException, SAXException, Exception;
+	public Object process(Izvod izvod) throws JAXBException, IOException, SAXException, Exception;
+	public Object process(NalogZaPlacanje nalog) throws JAXBException, IOException, SAXException, Exception;
+	public Object process(ZahtevZaIzvod zahtev) throws JAXBException, IOException, SAXException, Exception;
+	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception;
 }

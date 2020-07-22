@@ -36,32 +36,32 @@ public abstract class ProcessingState implements DataProcessing {
 	}
 
 	@Override
-	public Object process(Mt900 mt900) {
+	public Object process(Mt900 mt900) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 
 	@Override
-	public Object process(Mt910 mt910) {
+	public Object process(Mt910 mt910) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 
 	@Override
-	public Object process(Izvod izvod) {
+	public Object process(Izvod izvod) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 
 	@Override
-	public Object process(NalogZaPlacanje nalog) {
+	public Object process(NalogZaPlacanje nalog) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 
 	@Override
-	public Object process(ZahtevZaIzvod zahtev) {
+	public Object process(ZahtevZaIzvod zahtev) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 	
 	@Override 
-	public Object process(Faktura faktura) {
+	public Object process(Faktura faktura) throws JAXBException, IOException, SAXException, Exception {
 		return new NullClass();
 	}
 	
@@ -69,6 +69,14 @@ public abstract class ProcessingState implements DataProcessing {
 		dbWriter = new DBWriterFacade<T>(target);
 		dbWriter.save();
 		dbWriter=null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T> T readFromDatabase(T type, String schemaName) throws JAXBException, IOException, Exception {
+		dbReader = new DBReaderFacade<T>(type, schemaName);
+		T retVal =  (T) dbReader.read();
+		dbReader=null;
+		return retVal;
 	}
 
 }
